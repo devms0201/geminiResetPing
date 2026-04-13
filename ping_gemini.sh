@@ -1,7 +1,15 @@
 #!/bin/bash
 
-echo "[1/2] gemini-3.1-pro-preview 모델 실행 중..."
+set -euo pipefail
+
+if ! command -v gemini >/dev/null 2>&1; then
+  echo "Error: 'gemini' command not found in PATH."
+  echo "Install Gemini CLI or set PATH correctly before running this script."
+  exit 127
+fi
+
+echo "[1/2] Running gemini-3.1-pro-preview..."
 gemini -m gemini-3.1-pro-preview -p "ping"
 
-echo "[2/2] gemini-3-flash-preview 모델 실행 중..."
+echo "[2/2] Running gemini-3-flash-preview..."
 gemini -m gemini-3-flash-preview -p "ping"
