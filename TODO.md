@@ -27,3 +27,11 @@
 - 단점
   - `make` 의존성 추가(대부분 macOS 기본 포함이지만 환경별 확인 필요)
 
+## Critical Review Follow-ups (Deferred)
+
+- `install.sh`의 `gemini` 경로 해석 안정화
+  - alias/function/shim 환경에서도 launchd에서 확실히 실행되게 처리 필요
+- `ping_gemini.sh`의 `gemini` 호출 타임아웃 추가
+  - hung 상태로 장시간 점유되는 리스크 방지 필요
+- 수동 테스트 UX 정리
+  - README의 수동 테스트가 실제 강제 실행인지(현재는 조건에 따라 skip 가능) 정책 결정 필요

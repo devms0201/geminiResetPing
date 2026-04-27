@@ -54,6 +54,8 @@ cat > "$PLIST_PATH" <<EOF
 
     <key>EnvironmentVariables</key>
     <dict>
+      <key>GEMINI_CLI_TRUST_WORKSPACE</key>
+      <string>true</string>
       <key>PATH</key>
       <string>$GEMINI_DIR:/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
       <key>TARGET_HOUR</key>

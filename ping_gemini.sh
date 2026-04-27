@@ -30,22 +30,22 @@ target_minutes=$((TARGET_HOUR * 60 + TARGET_MINUTE))
 
 if [[ "$FORCE_RUN" != "--force" ]]; then
   if (( now_minutes < target_minutes )); then
-    echo "Skip: current time is before $(printf '%02d:%02d' "$TARGET_HOUR" "$TARGET_MINUTE")."
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Skip: current time is before $(printf '%02d:%02d' "$TARGET_HOUR" "$TARGET_MINUTE")."
     exit 0
   fi
 
   if [[ -f "$STATE_FILE" ]] && [[ "$(cat "$STATE_FILE")" == "$today" ]]; then
-    echo "Skip: already succeeded today ($today)."
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Skip: already succeeded today ($today)."
     exit 0
   fi
 fi
 
-echo "[1/2] Running gemini-3.1-pro-preview..."
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] [1/2] Running gemini-3.1-pro-preview..."
 gemini -m gemini-3.1-pro-preview -p "ping"
 
-echo "[2/2] Running gemini-3-flash-preview..."
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] [2/2] Running gemini-3-flash-preview..."
 gemini -m gemini-3-flash-preview -p "ping"
 
 mkdir -p "$STATE_DIR"
 printf '%s\n' "$today" > "$STATE_FILE"
-echo "Success: marked completion for $today."
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Success: marked completion for $today."
